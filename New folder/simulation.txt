@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 100
+
+int stack[MAX];
+int top = -1;
+
+void display() {
+    if(top == -1) {
+        printf("\nStack is Empty!\n");
+        return;
+    }
+    printf("\nStack Elements:\n");
+    for(int i = top; i >= 0; i--)
+        printf("%d\n", stack[i]);
+}
+
+void push() {
+    if(top == MAX - 1) {
+        printf("\nStack Overflow! Cannot Push.\n");
+        return;
+    }
+    int value;
+    printf("Enter value to push: ");
+    scanf("%d", &value);
+    stack[++top] = value;
+    printf("\nPushed %d into Stack Successfully.\n", value);
+}
+
+void pop() {
+    if(top == -1) {
+        printf("\nStack Underflow! Cannot Pop.\n");
+        return;
+    }
+    printf("\nPopped %d from Stack.\n", stack[top]);
+    top--;
+}
+
+void peek() {
+    if(top == -1) {
+        printf("\nStack is Empty! No Top Element.\n");
+        return;
+    }
+    printf("\nTop Element = %d\n", stack[top]);
+}
+
+int main() {
+    int choice;
+
+    printf("\n========== STACK SIMULATION PROJECT ==========\n");
+
+    while(1) {
+        printf("\n-------------------------------------\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Peek (Top Element)\n");
+        printf("4. Display Stack\n");
+        printf("5. Exit\n");
+        printf("-------------------------------------\n");
+        printf("Enter Your Choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1: push(); break;
+            case 2: pop(); break;
+            case 3: peek(); break;
+            case 4: display(); break;
+            case 5:
+                printf("\nThank You! Exiting...\n");
+                exit(0);
+            default:
+                printf("\nInvalid Choice! Try Again.\n");
+        }
+    }
+    return 0;
+}
